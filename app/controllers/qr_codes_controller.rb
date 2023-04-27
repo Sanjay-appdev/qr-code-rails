@@ -24,13 +24,31 @@ def process_wifi
 
  def process_url
 
-  @user_url = params.fetch("page")
+  @user_url = params.fetch("page") 
 
   qrcode = RQRCode::QRCode.new(@user_url)
 
   @svg = qrcode.as_svg
 
   render({ :template =>"my_templates/url.html.erb" })
+    end
+
+  def process_sms
+
+    @phone_number = params.fetch("phone").gsub(/\s+/, "")
+
+    @starter_message = params.fetch("message")
+
+    #SMSTO:9876543210:Hi Alice! It's me, 
+
+    @final_string = "SMSTO:"+ @phone_number + ";P:" + @starter_message + ";;"
+
+    qrcode = RQRCode::QRCode.new(@final_string)
+
+    @svg = qrcode.as_svg
+
+
+    render({ :template =>"my_templates/sms.html.erb" })
     end
 end
 

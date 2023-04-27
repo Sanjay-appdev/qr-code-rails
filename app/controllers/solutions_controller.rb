@@ -19,7 +19,7 @@ class SolutionsController < ApplicationController
     render({ :template => "solutions/qr_for_url.html.erb" })
   end
 
-  def wifi_qr
+  def wifi_qr  
     @network_name = params.fetch("ssid")
 
     @network_password = params.fetch("pw")

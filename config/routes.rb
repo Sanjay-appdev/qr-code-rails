@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get("/url", { :controller =>"qr_codes", :action =>"process_url" })
 
+  get("/sms", { :controller =>"qr_codes", :action =>"process_sms" })
+
 
   # Solutions below.
 
